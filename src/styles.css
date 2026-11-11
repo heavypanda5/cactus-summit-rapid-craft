@@ -1,0 +1,174 @@
+@import "tailwindcss";
+
+@font-face {
+  font-family: "Bebas Neue";
+  src: url("../assets/fonts/BebasNeue-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Rye";
+  src: url("../assets/fonts/Rye-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@theme {
+  --color-bg: #110c09;
+  --color-bg-deep: #070403;
+  --color-surface: #1c130f;
+  --color-surface-2: #2a1c15;
+  --color-fg: #fff4e4;
+  --color-muted: #cbb59d;
+  --color-primary: #ff7a1a;
+  --color-gold: #ffc14a;
+  --color-foam: #fff6e4;
+  --color-line: #4a3328;
+  --font-display: "Bebas Neue", Impact, sans-serif;
+  --font-western: "Rye", Georgia, serif;
+  --font-body: "Segoe UI", "Avenir Next", sans-serif;
+  --radius-lg: 1rem;
+}
+
+@layer base {
+  button:not(:disabled),
+  [role="button"]:not(:disabled) {
+    cursor: pointer;
+  }
+
+  html,
+  body {
+    background: var(--color-bg);
+    color: var(--color-fg);
+    font-family: var(--font-body);
+  }
+
+  body {
+    min-height: 100vh;
+    background:
+      radial-gradient(ellipse 80% 50% at 50% -10%, color-mix(in srgb, var(--color-primary) 28%, transparent), transparent 60%),
+      var(--color-bg);
+  }
+
+  input,
+  button {
+    font: inherit;
+  }
+}
+
+.stage {
+  position: relative;
+}
+
+.stage-glow {
+  position: absolute;
+  inset: 8% 6%;
+  background: radial-gradient(ellipse at center, color-mix(in srgb, var(--color-primary) 55%, transparent), transparent 68%);
+  filter: blur(28px);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.tarp-shell {
+  position: relative;
+  z-index: 1;
+  border-radius: 0.35rem;
+  box-shadow:
+    0 0 0 1px color-mix(in srgb, var(--color-gold) 55%, transparent),
+    0 24px 60px rgb(0 0 0 / 0.45),
+    0 0 80px color-mix(in srgb, var(--color-primary) 28%, transparent);
+}
+
+.grommet {
+  position: absolute;
+  z-index: 2;
+  width: 0.85rem;
+  height: 0.85rem;
+  border-radius: 999px;
+  background:
+    radial-gradient(circle at 35% 35%, #f3e2c4, #8a7048 42%, #2a2118 70%);
+  box-shadow:
+    inset 0 0 0 0.18rem #1a120c,
+    0 1px 2px rgb(0 0 0 / 0.6);
+  pointer-events: none;
+}
+
+.desk {
+  background:
+    linear-gradient(180deg, color-mix(in srgb, var(--color-surface-2) 88%, black), var(--color-surface));
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-lg);
+  box-shadow: inset 0 1px 0 rgb(255 214 160 / 0.06);
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.field span {
+  font-family: var(--font-display);
+  letter-spacing: 0.08em;
+  font-size: 0.95rem;
+  color: var(--color-gold);
+}
+
+.field input {
+  width: 100%;
+  border-radius: 0.6rem;
+  border: 1px solid var(--color-line);
+  background: var(--color-bg-deep);
+  color: var(--color-foam);
+  padding: 0.7rem 0.8rem;
+  min-height: 2.75rem;
+}
+
+.field input:focus {
+  outline: 2px solid var(--color-gold);
+  outline-offset: 1px;
+}
+
+.size-btn,
+.btn {
+  min-height: 2.75rem;
+  border-radius: 0.7rem;
+  padding: 0.55rem 0.9rem;
+  border: 1px solid var(--color-line);
+  background: var(--color-bg-deep);
+  color: var(--color-fg);
+}
+
+.size-btn[data-active="true"] {
+  border-color: var(--color-gold);
+  background: color-mix(in srgb, var(--color-gold) 16%, var(--color-bg-deep));
+  color: var(--color-gold);
+}
+
+.btn-primary {
+  background: linear-gradient(180deg, #ff9a3c, var(--color-primary));
+  color: #2a1004;
+  border-color: #ffd7a4;
+  font-family: var(--font-display);
+  letter-spacing: 0.06em;
+  font-size: 1.15rem;
+}
+
+.btn-primary:disabled {
+  opacity: 0.6;
+  cursor: wait;
+}
+
+.btn-ghost {
+  background: transparent;
+  color: var(--color-foam);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .stage-glow {
+    filter: none;
+  }
+}
